@@ -7,6 +7,12 @@ using InteractiveUtils
 # ╔═╡ 357c58be-8ac8-4cd6-b1d3-1250289bc6f1
 using PlutoUI
 
+# ╔═╡ 3ae39779-a359-492f-ac1d-62844f6bd974
+using LinearAlgebra
+
+# ╔═╡ 46c46a54-dff0-4fcb-9dbd-7e4c70e1034d
+using Random 
+
 # ╔═╡ 1e3a8e5c-9be9-11ef-0bdd-a59dad06722f
 md"""
 # Introducción a Julia 
@@ -437,10 +443,253 @@ M_3 ./ 0.5
 # ╔═╡ efa17182-4ceb-48de-b8c2-83385131c1ba
 M_3 
 
+# ╔═╡ 04dfa6bb-9b35-40d2-a7d2-9716a79f3952
+size(M_3)
+
+# ╔═╡ 8bfb51a6-7d80-442b-8e88-cdabcdf42efc
+length(M_3)
+
+# ╔═╡ 648bc2bf-6467-4ce5-8b65-23fe04c89ea5
+typeof(M_3)
+
+# ╔═╡ 6289eb5a-63ca-4f83-913f-9dbfb2a1e8d6
+eltype(M_3)
+
+# ╔═╡ c08d36ab-5a7e-4116-97ad-20a9b34bd156
+eltype(M_1)
+
+# ╔═╡ f4ad0e81-c0e0-4e31-a7ca-f9642fcf7aeb
+M_3
+
+# ╔═╡ 58160d7f-1f6b-47e5-bac1-38bc03d0fe3c
+M_1
+
+# ╔═╡ 37b6e06e-1972-4b8a-add1-fd928fa0bfe6
+minimum(M_1)
+
+# ╔═╡ 9961d280-bb5d-4216-a1f0-e8e33ff0a9cf
+minimum(M_3)
+
+# ╔═╡ b9d60526-b48a-4865-9eb9-9dcdca5180c8
+maximum(M_1)
+
+# ╔═╡ f67d7def-fa5d-4132-9b18-dfd1200c4910
+maximum(M_3)
+
+# ╔═╡ 816a4bcc-443f-4382-a1b6-0ca020f0567c
+M_1
+
+# ╔═╡ bb15bfcc-50f6-45cf-9098-d361bf9dbc72
+M_3
+
+# ╔═╡ 7524dbb5-cfe6-441a-8f47-a132e692129d
+M_2
+
+# ╔═╡ c96cca1e-eeab-4a2b-8920-7136ebde750a
+
+
+# ╔═╡ 515f938a-46e3-4a14-80fd-a20a88ded4b0
+M_1 .- M_3 
+
+
+# ╔═╡ 0f9df66c-7ea7-45b8-a983-f33f3b5eb480
+M_1 - M_3 
+
+# ╔═╡ 7440478a-8218-4822-8d61-a57cfcaa6ada
+M_5 = M_1 * M_3
+
+# ╔═╡ 0e2431c5-edd8-42e3-914b-4ad962e75f3f
+minimum(M_5)
+
+# ╔═╡ a1a5113c-73aa-4468-98ed-84f5e1133f2a
+M_3
+
+# ╔═╡ 17df65a0-5d6a-49c3-a7c8-7b4a832dc9fd
+M_6 = M_1 - M_3
+
+# ╔═╡ dca8011f-b75b-4baa-a2d8-b9ea2da049d7
+M_6^2
+
+# ╔═╡ 16d4b484-6872-47ad-9013-8c065104b095
+M_6.^2
+
+# ╔═╡ 0fc733c7-43d4-4643-a196-0ef8a46bdbe9
+M_6
+
+# ╔═╡ 9f3b8782-5667-4c48-974a-4f87221acd54
+M_1
+
+# ╔═╡ 61e7f77b-f434-4fdc-9b01-c93a267847e2
+transpose(M_1)
+
+# ╔═╡ 9ada7faf-a14a-4dfb-8642-29ccb22c4555
+M_1'
+
+# ╔═╡ 3268157b-fb95-4162-9d8d-affad6bdbc8d
+inv(M_1)
+
+# ╔═╡ a7c92808-ba43-40ae-8fac-d3fc56711651
+M_1
+
+# ╔═╡ 7ab0a6b1-62b7-4a58-a733-cf3cf2068257
+M_1
+
+# ╔═╡ e08b711b-d2e9-46c1-999e-bab698112485
+M_1'
+
+# ╔═╡ 22bb9f1b-ce6d-4aa7-a548-5774410d4d65
+inv(M_1)
+
+# ╔═╡ 386562a1-e63e-4aa6-8c92-42215c408776
+det(M_1)
+
+# ╔═╡ 6cf73ad2-8326-4a90-b9d4-ee0b0a4e797d
+det(M_3)
+
+# ╔═╡ 5fe1fdaa-e9ba-4d79-bacd-52617dd37239
+M_1
+
+# ╔═╡ 5f2eaa97-7c3e-4141-8656-c75dd2d873a1
+M_7 = [1.0 2.0 3.0; 4.0 5.0 6.0; 7.0 8.0 9.0]
+
+# ╔═╡ 11ab5eb2-7330-4987-bd49-0b461051c618
+det(M_7)
+
+# ╔═╡ 2094fcd9-348a-44fa-bcaf-654812006bd4
+inv(M_7)
+
+# ╔═╡ 49e904d1-b488-428e-89fd-5ccb1b6a41fc
+M_1
+
+# ╔═╡ c25c61d7-e981-473d-8991-5be5918b83ae
+M_3
+
+# ╔═╡ 8f174999-76ae-4d29-a922-cb9b5f0f4422
+M_8 = [M_1 ; M_3 ; M_7]
+
+# ╔═╡ 997a6ebf-00e1-47aa-8779-61e917231eeb
+[M_1 M_3 M_7]
+
+# ╔═╡ bdd69ae7-8e40-41c1-aa73-fa7c416c23ad
+zeros(3)
+
+# ╔═╡ e5aa4101-2bae-4cd7-b29d-977d2591fea0
+zeros(Int64, 3)
+
+# ╔═╡ fd23fbf9-2952-4477-afc9-9ccf6501e492
+zeros(3, 3)
+
+# ╔═╡ a22d085e-0b32-4ec9-adf7-2b4fee73e9ce
+zeros(100, 100)
+
+# ╔═╡ affdfd9a-7acb-4d62-9684-cf5674d7b7a9
+ones(5)
+
+# ╔═╡ 6055259b-bb51-486d-b4f3-33bd108bf960
+ones(Int8, 5)
+
+# ╔═╡ cd834464-5289-4df1-b03e-7707fb1c217b
+ones(100, 100)
+
+# ╔═╡ a8ca1efd-2f49-4e76-a109-2d80cd59da5a
+falses(5, 5)
+
+# ╔═╡ d67baa37-d7b2-474c-90be-7e5f45a2db6e
+trues(5, 5)
+
+# ╔═╡ 95271c47-5318-4390-88c7-57c2927fa8c9
+fill(5, 3, 2)
+
+# ╔═╡ c22e842f-59c7-44ad-ab26-868fff32c851
+fill(π, 10, 10)
+
+# ╔═╡ aa05d65f-0fa4-43da-8b0c-c7f82886364e
+# ╠═╡ disabled = true
+#=╠═╡
+β = 2.5
+  ╠═╡ =#
+
+# ╔═╡ 9e962dfc-729d-4928-ad16-af1369a53cbe
+β = 9
+
+# ╔═╡ 7b8ef850-8b81-4a36-81c5-81cf9723eb5f
+fill(β, 5, 5)
+
+# ╔═╡ 5e92d4be-384a-40ef-9cdb-1278de250d88
+M_1
+
+# ╔═╡ ecac1c1f-dca5-4e58-a39a-487da20b4d4f
+M_1[:]
+
+# ╔═╡ 757872c1-5f00-4ee4-a329-e9539ec30d56
+M_9 = M_1[:]
+
+# ╔═╡ 3ce03175-f583-4fe2-9a61-e76286e9636f
+sort(M_9)
+
+# ╔═╡ 62fa7209-e820-4497-b807-302d8ca15aac
+M_9
+
+# ╔═╡ d02cf0bc-753a-4d5e-99f6-260851153bd8
+sort!(M_9)
+
+# ╔═╡ 82525124-c641-4f3a-82b0-499174f2216d
+M_9
+
+# ╔═╡ 3a1aa072-baee-4be6-8bc6-562aeefcf4ed
+sort!(M_9, rev=true)
+
+# ╔═╡ 77a4be6b-7112-4fab-a096-ce2d4e29a604
+M_9
+
+# ╔═╡ 8137e129-dd58-4b15-9cbf-eec86c4df6b1
+push!(M_9, 0)
+
+# ╔═╡ 38cc5906-c24b-419d-8621-57ecd6838e1a
+M_9
+
+# ╔═╡ 242b487c-ecc1-4cef-a511-d439ef2f6a31
+pop!(M_9)
+
+# ╔═╡ 4a8dac4c-a0b9-4771-ae9a-3e3d54fecb7f
+M_9
+
+# ╔═╡ 188605ed-8c1b-4751-9124-2bf30603016a
+popfirst!(M_9)
+
+# ╔═╡ f9c05cea-488e-4312-9fde-109d2fd3083f
+M_9
+
+# ╔═╡ 1b87d004-9ade-495c-ae18-c898c8107f2f
+rand(3, 2)
+
+# ╔═╡ 9db6b4f9-48f4-4557-a2ff-a87af403742b
+rand(3, 3, 2)
+
+# ╔═╡ dc8a331f-4c4b-4821-ab6a-de556b7f955b
+
+
+# ╔═╡ 34260232-cff5-4e49-b7ce-180d2c912cbd
+
+
+# ╔═╡ d4845122-1878-43e3-aa3f-a492c2eaed3f
+
+
+# ╔═╡ bc229008-aed0-4bb3-8367-0b798711c7f3
+
+
+# ╔═╡ f04803ff-c6a7-482c-b21d-4f7897ec3871
+
+
+# ╔═╡ b93dcc53-7088-4f5e-ba75-89d212ada74d
+
+
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 PlutoUI = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
+Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 
 [compat]
 PlutoUI = "~0.7.60"
@@ -452,7 +701,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.11.1"
 manifest_format = "2.0"
-project_hash = "8aa109ae420d50afa1101b40d1430cf3ec96e03e"
+project_hash = "ce60045ea68607ebd452e3d578a0d5ec4f3091b3"
 
 [[deps.AbstractPlutoDingetjes]]
 deps = ["Pkg"]
@@ -861,5 +1110,86 @@ version = "17.4.0+2"
 # ╠═2e82f4b1-962d-4b1e-b06b-15f2ddbfbdf4
 # ╠═29ba0094-e723-4579-a385-35b9bfc11ad0
 # ╠═efa17182-4ceb-48de-b8c2-83385131c1ba
+# ╠═04dfa6bb-9b35-40d2-a7d2-9716a79f3952
+# ╠═8bfb51a6-7d80-442b-8e88-cdabcdf42efc
+# ╠═648bc2bf-6467-4ce5-8b65-23fe04c89ea5
+# ╠═6289eb5a-63ca-4f83-913f-9dbfb2a1e8d6
+# ╠═c08d36ab-5a7e-4116-97ad-20a9b34bd156
+# ╠═f4ad0e81-c0e0-4e31-a7ca-f9642fcf7aeb
+# ╠═58160d7f-1f6b-47e5-bac1-38bc03d0fe3c
+# ╠═37b6e06e-1972-4b8a-add1-fd928fa0bfe6
+# ╠═9961d280-bb5d-4216-a1f0-e8e33ff0a9cf
+# ╠═b9d60526-b48a-4865-9eb9-9dcdca5180c8
+# ╠═f67d7def-fa5d-4132-9b18-dfd1200c4910
+# ╠═816a4bcc-443f-4382-a1b6-0ca020f0567c
+# ╠═bb15bfcc-50f6-45cf-9098-d361bf9dbc72
+# ╠═7524dbb5-cfe6-441a-8f47-a132e692129d
+# ╠═c96cca1e-eeab-4a2b-8920-7136ebde750a
+# ╠═515f938a-46e3-4a14-80fd-a20a88ded4b0
+# ╠═0f9df66c-7ea7-45b8-a983-f33f3b5eb480
+# ╠═7440478a-8218-4822-8d61-a57cfcaa6ada
+# ╠═0e2431c5-edd8-42e3-914b-4ad962e75f3f
+# ╠═a1a5113c-73aa-4468-98ed-84f5e1133f2a
+# ╠═17df65a0-5d6a-49c3-a7c8-7b4a832dc9fd
+# ╠═dca8011f-b75b-4baa-a2d8-b9ea2da049d7
+# ╠═16d4b484-6872-47ad-9013-8c065104b095
+# ╠═0fc733c7-43d4-4643-a196-0ef8a46bdbe9
+# ╠═9f3b8782-5667-4c48-974a-4f87221acd54
+# ╠═61e7f77b-f434-4fdc-9b01-c93a267847e2
+# ╠═9ada7faf-a14a-4dfb-8642-29ccb22c4555
+# ╠═3268157b-fb95-4162-9d8d-affad6bdbc8d
+# ╠═a7c92808-ba43-40ae-8fac-d3fc56711651
+# ╠═7ab0a6b1-62b7-4a58-a733-cf3cf2068257
+# ╠═e08b711b-d2e9-46c1-999e-bab698112485
+# ╠═22bb9f1b-ce6d-4aa7-a548-5774410d4d65
+# ╠═386562a1-e63e-4aa6-8c92-42215c408776
+# ╠═3ae39779-a359-492f-ac1d-62844f6bd974
+# ╠═6cf73ad2-8326-4a90-b9d4-ee0b0a4e797d
+# ╠═5fe1fdaa-e9ba-4d79-bacd-52617dd37239
+# ╠═5f2eaa97-7c3e-4141-8656-c75dd2d873a1
+# ╠═11ab5eb2-7330-4987-bd49-0b461051c618
+# ╠═2094fcd9-348a-44fa-bcaf-654812006bd4
+# ╠═49e904d1-b488-428e-89fd-5ccb1b6a41fc
+# ╠═c25c61d7-e981-473d-8991-5be5918b83ae
+# ╠═8f174999-76ae-4d29-a922-cb9b5f0f4422
+# ╠═997a6ebf-00e1-47aa-8779-61e917231eeb
+# ╠═bdd69ae7-8e40-41c1-aa73-fa7c416c23ad
+# ╠═e5aa4101-2bae-4cd7-b29d-977d2591fea0
+# ╠═fd23fbf9-2952-4477-afc9-9ccf6501e492
+# ╠═a22d085e-0b32-4ec9-adf7-2b4fee73e9ce
+# ╠═affdfd9a-7acb-4d62-9684-cf5674d7b7a9
+# ╠═6055259b-bb51-486d-b4f3-33bd108bf960
+# ╠═cd834464-5289-4df1-b03e-7707fb1c217b
+# ╠═a8ca1efd-2f49-4e76-a109-2d80cd59da5a
+# ╠═d67baa37-d7b2-474c-90be-7e5f45a2db6e
+# ╠═95271c47-5318-4390-88c7-57c2927fa8c9
+# ╠═c22e842f-59c7-44ad-ab26-868fff32c851
+# ╠═aa05d65f-0fa4-43da-8b0c-c7f82886364e
+# ╠═9e962dfc-729d-4928-ad16-af1369a53cbe
+# ╠═7b8ef850-8b81-4a36-81c5-81cf9723eb5f
+# ╠═5e92d4be-384a-40ef-9cdb-1278de250d88
+# ╠═ecac1c1f-dca5-4e58-a39a-487da20b4d4f
+# ╠═757872c1-5f00-4ee4-a329-e9539ec30d56
+# ╠═3ce03175-f583-4fe2-9a61-e76286e9636f
+# ╠═62fa7209-e820-4497-b807-302d8ca15aac
+# ╠═d02cf0bc-753a-4d5e-99f6-260851153bd8
+# ╠═82525124-c641-4f3a-82b0-499174f2216d
+# ╠═3a1aa072-baee-4be6-8bc6-562aeefcf4ed
+# ╠═77a4be6b-7112-4fab-a096-ce2d4e29a604
+# ╠═8137e129-dd58-4b15-9cbf-eec86c4df6b1
+# ╠═38cc5906-c24b-419d-8621-57ecd6838e1a
+# ╠═242b487c-ecc1-4cef-a511-d439ef2f6a31
+# ╠═4a8dac4c-a0b9-4771-ae9a-3e3d54fecb7f
+# ╠═188605ed-8c1b-4751-9124-2bf30603016a
+# ╠═f9c05cea-488e-4312-9fde-109d2fd3083f
+# ╠═46c46a54-dff0-4fcb-9dbd-7e4c70e1034d
+# ╠═1b87d004-9ade-495c-ae18-c898c8107f2f
+# ╠═9db6b4f9-48f4-4557-a2ff-a87af403742b
+# ╠═dc8a331f-4c4b-4821-ab6a-de556b7f955b
+# ╠═34260232-cff5-4e49-b7ce-180d2c912cbd
+# ╠═d4845122-1878-43e3-aa3f-a492c2eaed3f
+# ╠═bc229008-aed0-4bb3-8367-0b798711c7f3
+# ╠═f04803ff-c6a7-482c-b21d-4f7897ec3871
+# ╠═b93dcc53-7088-4f5e-ba75-89d212ada74d
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
