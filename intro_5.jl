@@ -4,282 +4,245 @@
 using Markdown
 using InteractiveUtils
 
-# ╔═╡ 16bcf6fb-52cb-4a31-842f-f47acfd5d710
-using CairoMakie, Random, PlutoUI, DataFrames, CSV
+# This Pluto notebook uses @bind for interactivity. When running this notebook outside of Pluto, the following 'mock version' of @bind gives bound variables a default value (instead of an error).
+macro bind(def, element)
+    #! format: off
+    quote
+        local iv = try Base.loaded_modules[Base.PkgId(Base.UUID("6e696c72-6542-2067-7265-42206c756150"), "AbstractPlutoDingetjes")].Bonds.initial_value catch; b -> missing; end
+        local el = $(esc(element))
+        global $(esc(def)) = Core.applicable(Base.get, el) ? Base.get(el) : iv(el)
+        el
+    end
+    #! format: on
+end
 
-# ╔═╡ 3c804cdc-a6df-11ef-1827-c346ba541900
+# ╔═╡ 2703b8fd-fb05-45d2-b8ed-c096a2fa6296
+using Random, CairoMakie, DataFrames, CSV, PlutoUI
+
+# ╔═╡ 2a609346-a875-11ef-1e8b-c97a6531fcdd
 md"""
-# Funciones 
+# Introducción a simulaciones.
 """
 
-# ╔═╡ 40da23ba-2717-423c-a218-e54782615b3a
+# ╔═╡ a13bbeb1-06c2-4e9e-a19d-4587529f7a69
 TableOfContents(title="Contenido")
 
-# ╔═╡ b3f11b2a-3e78-44e0-94d7-e65012d1e733
-md"""
-```
-function nombre_de_la_funcion(arg1, arg2, ...)
-	Lo que pido que haga la funcion
-end
-```
-"""
-
-# ╔═╡ 6abef8f5-ae40-484d-aa89-1cc97c0fd47a
-function cuadratica(x, exponente)
-	x^exponente 
+# ╔═╡ 39928a46-42bd-4028-aba6-5ba8719d1fbe
+begin
+Random.seed!(1234)
+vector_1 = rand(3)
 end
 
-# ╔═╡ ed364874-f133-408c-a33e-46cb4dbc07b8
-cuadratica(2, 3)
+# ╔═╡ c10d4222-8d6a-472d-a4be-4ab67e6bf936
+rand(3)
 
-# ╔═╡ 0c9dc99c-563b-43f1-adb1-61c1f3e7ca63
-cuadratica(3, 2)
-
-# ╔═╡ e4358af5-0379-43d3-b7db-8948bb570420
-function cubica(x)
-	operacion = x^3
-	return operacion
+# ╔═╡ 19859f88-d4f3-4092-a928-01b75dda481a
+begin
+Random.seed!(1234)
+vector_2 = rand(3)
 end
 
-# ╔═╡ 0b61dc46-9bcd-4bf0-9d26-4f2b02f7dae1
-operacion
+# ╔═╡ 558a0c81-1ad0-4dc0-b262-0880cd6ab57b
+vector_1 == vector_2
 
-# ╔═╡ a61eca55-d562-44aa-8695-86023b2ab638
-cubica(2)
+# ╔═╡ 99ade88d-270a-4298-bed3-58a25b26c2e8
 
-# ╔═╡ c82f3a93-f786-479c-886a-844167afdd83
-cubica(3)
 
-# ╔═╡ f22cef44-bda9-4511-8a6f-d100e7c2ce56
-function mywhileloop(x)
-	i = 1
-
-	while i <= x
-		println(i)
-		i += 1
-	end
-	
-end
-
-# ╔═╡ e9fda05a-c888-482e-83cc-d61413e5e07a
-mywhileloop(5)
-
-# ╔═╡ 524258b0-9ddb-4cd3-941e-5559b61b50ca
-mywhileloop(10)
-
-# ╔═╡ 683e5f3e-e2cc-4499-8d00-1f621e75cec7
-mywhileloop(25)
-
-# ╔═╡ 644e9664-e989-4207-a2c1-f58fd9e439d2
-M1 = mywhileloop(25)
-
-# ╔═╡ 74f5d8e8-7654-4c0c-9e86-deb80a12550f
-M1
-
-# ╔═╡ a32c1a1a-5581-4ef9-bb38-24bc6fa6f191
-function myforloop(start, step, stop)
-	for i in start:step:stop
-		println(i)
-	end
-end
-
-# ╔═╡ 5e293a19-6a85-4006-b2ff-fcec6412a332
-myforloop(1, 1, 10)
-
-# ╔═╡ 77724b5e-b6ec-4c1c-8f5a-e916cbfe189a
-myforloop(10, -1, 1)
-
-# ╔═╡ f1b568b5-a1e3-4101-b25a-7374635d1394
-myforloop('a', 1, 'z')
-
-# ╔═╡ b1a3a1e6-2dda-43e9-b315-46bd6b7747a7
-function myforloop_1(start, step, stop)
-	
-	M = [ ]
-	
-	for i in start:step:stop
-		push!(M, i)
-	end
-	
-	return M
-end
-
-# ╔═╡ b7378c62-9bd0-4182-922b-78573970925f
-M_2 = myforloop_1(1, 1, 10)
-
-# ╔═╡ 6c4f6000-ff57-4076-8397-cdf30abdb494
-M_2
-
-# ╔═╡ 0e30abfb-170b-4c9d-84c8-b8103968d833
-function myforloop_2(start, step, stop)
-	
-	M = zeros(stop)
-	
-	for i in start:step:stop
-		M[i] = i 
-	end
-	
-	return M
-end
-
-# ╔═╡ 4d034ff1-3a3c-4bf6-99f1-44acc1ba95bf
-M_3 = myforloop_2(1, 1, 10)
-
-# ╔═╡ cfd4c239-4d5b-4837-8e5b-82b13d7d1bf8
-M_3
-
-# ╔═╡ 7a0b3a28-e0f6-4fa8-b6a4-864c71e43796
-typeof(M_2)
-
-# ╔═╡ 78f2fb63-7823-49c4-9758-be2a1d64f0f7
-typeof(M_3)
-
-# ╔═╡ df24914d-5969-420f-a971-6ff0f4fbc3a2
-function xxx(start, step, stop)
-	
-	a = myforloop_1(start, step, stop)
-	b = myforloop_2(start, step, stop)
-	
-	return a, b
-	
-end
-
-# ╔═╡ 8e454246-5fd6-4d3a-8623-1e67cd21c82d
-xxx(1, 1, 10)
-
-# ╔═╡ 06ffac1c-f51d-45e1-ab31-58a3277fd48a
-M_any, M_float = xxx(1, 1, 10)
-
-# ╔═╡ 4c156fc8-d2ff-4ff7-ab57-a4763f0409e8
-M_any
-
-# ╔═╡ 3191a853-59b1-4783-ae71-e9b5748f7367
-M_float
-
-# ╔═╡ 26c5bff0-9b4f-4331-952a-2022e72b38e7
-md"""
-## Algunos ejemplos
-"""
-
-# ╔═╡ b8e19d9d-e06b-4328-a8fb-ab7a2c8994a6
-rand((-1, 1))
-
-# ╔═╡ f4061d75-37e5-4f3c-a9f2-ebc7e08824d5
-function jump(x)
+# ╔═╡ 6d3c1926-378a-4a40-af6a-5fd1d9e0ede5
+function jump( )
 	return rand((-1, 1))
 end
 
-# ╔═╡ dd117a8d-5052-43ed-b66e-19207ac80bc0
-jump(1)
-
-# ╔═╡ 426ba632-aecb-4a7d-80f5-9a9ba2ecf710
-function walk(n)
+# ╔═╡ 3a677f0e-04de-4b03-8ec7-87336cab4fd5
+function trayectory(n)
 	x = 0
-
-	for j in 1:n
-		x += jump(1)
-	end
-	return x 
-end
-
-# ╔═╡ 07de43be-a2ed-411c-a6ba-13d0bf019f9a
-walk(10)
-
-# ╔═╡ af60d37a-ce04-495c-93ea-d845e27b3da6
-function trajectory(n)
-	x = 0 
 	y = [x]
 
-	for k in 1:n
-		x += jump(1)
+	for i in 1:n
+		x += jump()
 		push!(y, x)
 	end
+
 	return y 
+
 end
 
-# ╔═╡ e91d3e50-8557-4e7f-b033-55173df9794a
-trajectory(10)
+# ╔═╡ 530984f6-edb5-4d37-a78f-04e1d60bde1e
+begin
+	#Condiciones iniciales 
+	num_w = 50
+	num_s = 100
+end
 
-# ╔═╡ 54ebbf6b-641b-4d4f-b1c0-ff7573e02086
-z = trajectory(100)
-
-# ╔═╡ fce6825e-d02a-43dd-b11e-b52d41190170
-q = trajectory(100)
-
-# ╔═╡ ab69ab26-bf6a-4135-9793-9bdaa03159ec
-lines(z)
-
-# ╔═╡ b2e62171-6433-4906-88b3-5142a39c35fb
-lines(q)
-
-# ╔═╡ a6fd7d26-73c8-4cf9-9ad0-e0ddf3f93f5a
+# ╔═╡ f0b4e228-5d8f-4e26-8217-964558095e5d
 begin 
-	f = Figure(size=(800, 500))
-	ax = Axis(f[1,1],
-				title = "Trayectoria de caminata aleatoria")
-	lines!(ax, z, color = :black, label = "z")
-	scatter!(ax, z, color = :green)
-	
-	lines!(ax, q, color = :blue, label = "q")
-	scatter!(ax, q, color = :tomato)
-	axislegend(ax, position=:rb)
+	Random.seed!(1234)
+	f = Figure(size = (800, 500))
+	ax = Axis(f[1, 1],
+			title = "Trayectoria de $num_w caminantes", 
+			xlabel = L"t",
+			ylabel = L"f(t)")
+
+	for caminante in 1:num_w
+		trayectoria = trayectory(num_s)
+
+		lines!(ax, trayectoria)
+	end
+
 	f
+
+end 
+
+# ╔═╡ 49fe09fb-9320-47b4-8ca3-9c1055915ed6
+save("f1_multiples.png", f)
+
+# ╔═╡ 69e92841-c4c1-4324-85d2-a898429772be
+begin
+	M = [ ]
+
+	for j in 1:num_w
+		trayectoria = trayectory(num_s)
+		push!(M, trayectoria)
+	end
+	
+	M
 end
 
-# ╔═╡ 7cfe7ff9-221b-49b0-b2e1-143e7390b103
-save("f1.png", f)
+# ╔═╡ a8854ada-8f2c-42c3-9d8d-72ad878ac2ae
+df = DataFrame([M[j] for j in 1:num_w], :auto)
 
-# ╔═╡ f4cbfd87-72fb-41b0-a5aa-a64af9f5a6a9
-save("f1.pdf", f)
+# ╔═╡ d5f2f012-a11b-4f00-a8bd-8a27ed56dc9c
+CSV.write("varias_t.csv", df)
 
-# ╔═╡ 98dcedf3-d041-4294-8cab-c747423f1183
-save("f1.svg", f)
+# ╔═╡ 42158658-f766-4498-bd0a-63e1dbc65ee5
+md"""
+## Funciones interactivas 
+"""
 
-# ╔═╡ b8f4338d-20f7-4f30-99ea-bcf8d2802df6
-q
+# ╔═╡ 5ecde659-822e-4ed1-ac71-af0f76c124b9
+@bind n_w PlutoUI.Slider(1:50, show_value=true)
 
-# ╔═╡ 2a7e8f40-8ed9-442d-a052-d6711c2bba1a
-z
+# ╔═╡ b31c8285-5658-4f51-947e-8211b7617532
+@bind n_s PlutoUI.Slider(1:100, show_value=true)
 
-# ╔═╡ bcc8f93e-8d1b-45c7-be51-680c1e1d85e9
-df1 = DataFrame(t_1 = q)
-
-# ╔═╡ 3930511e-3806-4d08-90d1-674362283171
-df2 = DataFrame(t_1 = q, t_2 = z)
-
-# ╔═╡ 25065b2e-b8c9-4d3c-a07b-18a7a6f4e892
-typeof(df2)
-
-# ╔═╡ a29aa4ff-0372-44df-a25e-2529d8db401d
-df2.t_1
-
-# ╔═╡ e877b2e8-a6b6-4162-9200-0871a3aa1eda
-df2.t_2
-
-# ╔═╡ 8e9a7837-b027-4cf0-b916-1276371ba266
-df2.t_1[2]
-
-# ╔═╡ 662dd8ac-cc3b-4bb1-b883-1236aed1f48f
-CSV.write("trayectorias.csv", df2)
-
-# ╔═╡ c445243d-795d-4b9c-a6c2-a2b81438aed3
-data = CSV.read("trayectorias.csv", DataFrame)
-
-# ╔═╡ 5e47964f-1794-4e35-b184-4c10d2ce33fb
-data_1 = CSV.read("/Users/ernesxavier/Desktop/julia_uam/trayectorias.csv", DataFrame)
-
-# ╔═╡ 8c8e6ad6-d39f-4a6a-91fb-051dd4427dee
+# ╔═╡ cfb6c250-d180-476f-aa13-d2e89d139217
 begin 
-	f1 = Figure(size=(800, 500))
-	ax1 = Axis(f1[1,1],
-				title = "Trayectoria de caminata aleatoria")
-	lines!(ax1, data.t_2, color = :black, label = "z")
-	scatter!(ax1, data.t_2, color = :green)
+	Random.seed!(1234)
+	f2 = Figure(size = (800, 500))
+	ax2 = Axis(f2[1, 1],
+			title = "Trayectoria de $n_w caminantes", 
+			xlabel = L"t",
+			ylabel = L"f(t)")
+
+	for caminante in 1:n_w
+		trayectoria = trayectory(n_s)
+
+		lines!(ax2, trayectoria)
+	end
+
+	f2
+
+end 
+
+# ╔═╡ 1ca0f940-6cad-44ac-9dce-af5ac2d4f550
+md"""
+#### Simulaciones con 2 variables
+
+Consideremos las siguientes ecuaciones:
+
+$$x_t = \frac{1}{2}x_{t-1} + y_{t-1}$$
+
+$$y_t = - \frac{1}{2}x_{t-1} + y_{t-1}$$
+"""
+
+# ╔═╡ d9360eb4-5a87-4a5f-99f3-605ae735f55e
+function sim1(x_i, y_i, t_0, t_f)
+	x = x_i
+	y = y_i 
 	
-	lines!(ax1, data.t_1, color = :blue, label = "q")
-	scatter!(ax1, data.t_1, color = :tomato)
-	axislegend(ax1, position=:rb)
-	f1
+	x_result = [x]
+	y_result = [y]
+
+	for k in t_0:t_f
+		x = 0.5 * x + y
+		y = -0.5 * x + y 
+
+		push!(x_result, x)
+		push!(y_result, y)
+	end
+
+	return x_result, y_result
+end
+
+# ╔═╡ 4ab607b9-9b04-40a8-8860-4c86cd62a071
+xx, yy = sim1(1.0, 1.0, 1, 30)
+
+# ╔═╡ f53c0ff2-f763-460e-9d65-1031f59108cb
+begin
+	f3 = Figure()
+	ax3 = Axis(f3[1, 1],
+	title = "Simulación", 
+			xlabel = L"t",
+			ylabel = L"x(t), y(t)")
+
+	lines!(ax3, xx, color=:red, label = L"x(t)")
+	lines!(ax3, yy, color=:blue, label = L"y(t)")
+
+	axislegend(ax3)
+	f3 
+
+end
+
+# ╔═╡ 5c8cfe6e-ae0e-42f5-9299-03f8ce0be3c7
+function sim2(x_i, y_i, t_0, t_f)
+	x = x_i
+	y = y_i 
+	
+	x_result = [x]
+	y_result = [y]
+
+	for k in t_0:t_f
+		next_x = 0.5 * x + y
+		next_y = -0.5 * x + y 
+		
+		x, y = next_x, next_y
+		
+		push!(x_result, x)
+		push!(y_result, y)
+	end
+
+	return x_result, y_result
+end
+
+# ╔═╡ 233a02bd-c07e-4789-bd84-a5c25e68fb45
+xxx, yyy = sim2(1.0, 1.0, 1, 30)
+
+# ╔═╡ 6cd27947-7fe0-4209-891b-32e5d74123af
+begin
+	f4 = Figure()
+	ax4 = Axis(f4[1, 1],
+	title = "Simulación", 
+			xlabel = L"t",
+			ylabel = L"x(t), y(t)")
+
+	lines!(ax4, xxx, color=:red, label = L"x(t)")
+	lines!(ax4, yyy, color=:blue, label = L"y(t)")
+
+	axislegend(ax4)
+	f4 
+
+end
+
+# ╔═╡ 9d315f1d-e74d-4545-8012-f411169f72b9
+begin
+	fdf = Figure()
+	axdf = Axis(fdf[1, 1],
+	title = "Simulación", 
+			xlabel = L"x(t)",
+			ylabel = L"y(t)")
+	lines!(axdf, xxx, yyy, color=:tomato)
+	
+	fdf
 end
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
@@ -545,9 +508,9 @@ version = "1.11.0"
 
 [[deps.DelaunayTriangulation]]
 deps = ["AdaptivePredicates", "EnumX", "ExactPredicates", "PrecompileTools", "Random"]
-git-tree-sha1 = "89df54fbe66e5872d91d8c2cd3a375f660c3fd64"
+git-tree-sha1 = "ffc2e0358599a6a0db3a5c0142a9fa3dc5694f65"
 uuid = "927a84f5-c5f4-47a5-9785-b46e178433df"
-version = "1.6.1"
+version = "1.6.2"
 
 [[deps.Distributed]]
 deps = ["Random", "Serialization", "Sockets"]
@@ -1628,9 +1591,9 @@ version = "0.4.0"
 
 [[deps.StructArrays]]
 deps = ["ConstructionBase", "DataAPI", "Tables"]
-git-tree-sha1 = "4024dd68c382bad987ae0f931c9e1db1c1fddc02"
+git-tree-sha1 = "9537ef82c42cdd8c5d443cbc359110cbb36bae10"
 uuid = "09ab397b-f2b6-538f-b94a-2f83cf4a842a"
-version = "0.6.20"
+version = "0.6.21"
 
     [deps.StructArrays.extensions]
     StructArraysAdaptExt = "Adapt"
@@ -1928,67 +1891,33 @@ version = "3.6.0+0"
 """
 
 # ╔═╡ Cell order:
-# ╠═3c804cdc-a6df-11ef-1827-c346ba541900
-# ╠═16bcf6fb-52cb-4a31-842f-f47acfd5d710
-# ╠═40da23ba-2717-423c-a218-e54782615b3a
-# ╠═b3f11b2a-3e78-44e0-94d7-e65012d1e733
-# ╠═6abef8f5-ae40-484d-aa89-1cc97c0fd47a
-# ╠═ed364874-f133-408c-a33e-46cb4dbc07b8
-# ╠═0c9dc99c-563b-43f1-adb1-61c1f3e7ca63
-# ╠═e4358af5-0379-43d3-b7db-8948bb570420
-# ╠═0b61dc46-9bcd-4bf0-9d26-4f2b02f7dae1
-# ╠═a61eca55-d562-44aa-8695-86023b2ab638
-# ╠═c82f3a93-f786-479c-886a-844167afdd83
-# ╠═f22cef44-bda9-4511-8a6f-d100e7c2ce56
-# ╠═e9fda05a-c888-482e-83cc-d61413e5e07a
-# ╠═524258b0-9ddb-4cd3-941e-5559b61b50ca
-# ╠═683e5f3e-e2cc-4499-8d00-1f621e75cec7
-# ╠═644e9664-e989-4207-a2c1-f58fd9e439d2
-# ╠═74f5d8e8-7654-4c0c-9e86-deb80a12550f
-# ╠═a32c1a1a-5581-4ef9-bb38-24bc6fa6f191
-# ╠═5e293a19-6a85-4006-b2ff-fcec6412a332
-# ╠═77724b5e-b6ec-4c1c-8f5a-e916cbfe189a
-# ╠═f1b568b5-a1e3-4101-b25a-7374635d1394
-# ╠═b1a3a1e6-2dda-43e9-b315-46bd6b7747a7
-# ╠═b7378c62-9bd0-4182-922b-78573970925f
-# ╠═6c4f6000-ff57-4076-8397-cdf30abdb494
-# ╠═0e30abfb-170b-4c9d-84c8-b8103968d833
-# ╠═4d034ff1-3a3c-4bf6-99f1-44acc1ba95bf
-# ╠═cfd4c239-4d5b-4837-8e5b-82b13d7d1bf8
-# ╠═7a0b3a28-e0f6-4fa8-b6a4-864c71e43796
-# ╠═78f2fb63-7823-49c4-9758-be2a1d64f0f7
-# ╠═df24914d-5969-420f-a971-6ff0f4fbc3a2
-# ╠═8e454246-5fd6-4d3a-8623-1e67cd21c82d
-# ╠═06ffac1c-f51d-45e1-ab31-58a3277fd48a
-# ╠═4c156fc8-d2ff-4ff7-ab57-a4763f0409e8
-# ╠═3191a853-59b1-4783-ae71-e9b5748f7367
-# ╠═26c5bff0-9b4f-4331-952a-2022e72b38e7
-# ╠═b8e19d9d-e06b-4328-a8fb-ab7a2c8994a6
-# ╠═f4061d75-37e5-4f3c-a9f2-ebc7e08824d5
-# ╠═dd117a8d-5052-43ed-b66e-19207ac80bc0
-# ╠═426ba632-aecb-4a7d-80f5-9a9ba2ecf710
-# ╠═07de43be-a2ed-411c-a6ba-13d0bf019f9a
-# ╠═af60d37a-ce04-495c-93ea-d845e27b3da6
-# ╠═e91d3e50-8557-4e7f-b033-55173df9794a
-# ╠═54ebbf6b-641b-4d4f-b1c0-ff7573e02086
-# ╠═fce6825e-d02a-43dd-b11e-b52d41190170
-# ╠═ab69ab26-bf6a-4135-9793-9bdaa03159ec
-# ╠═b2e62171-6433-4906-88b3-5142a39c35fb
-# ╠═a6fd7d26-73c8-4cf9-9ad0-e0ddf3f93f5a
-# ╠═7cfe7ff9-221b-49b0-b2e1-143e7390b103
-# ╠═f4cbfd87-72fb-41b0-a5aa-a64af9f5a6a9
-# ╠═98dcedf3-d041-4294-8cab-c747423f1183
-# ╠═b8f4338d-20f7-4f30-99ea-bcf8d2802df6
-# ╠═2a7e8f40-8ed9-442d-a052-d6711c2bba1a
-# ╠═bcc8f93e-8d1b-45c7-be51-680c1e1d85e9
-# ╠═3930511e-3806-4d08-90d1-674362283171
-# ╠═25065b2e-b8c9-4d3c-a07b-18a7a6f4e892
-# ╠═a29aa4ff-0372-44df-a25e-2529d8db401d
-# ╠═e877b2e8-a6b6-4162-9200-0871a3aa1eda
-# ╠═8e9a7837-b027-4cf0-b916-1276371ba266
-# ╠═662dd8ac-cc3b-4bb1-b883-1236aed1f48f
-# ╠═c445243d-795d-4b9c-a6c2-a2b81438aed3
-# ╠═5e47964f-1794-4e35-b184-4c10d2ce33fb
-# ╠═8c8e6ad6-d39f-4a6a-91fb-051dd4427dee
+# ╠═2a609346-a875-11ef-1e8b-c97a6531fcdd
+# ╠═2703b8fd-fb05-45d2-b8ed-c096a2fa6296
+# ╠═a13bbeb1-06c2-4e9e-a19d-4587529f7a69
+# ╠═39928a46-42bd-4028-aba6-5ba8719d1fbe
+# ╠═c10d4222-8d6a-472d-a4be-4ab67e6bf936
+# ╠═19859f88-d4f3-4092-a928-01b75dda481a
+# ╠═558a0c81-1ad0-4dc0-b262-0880cd6ab57b
+# ╠═99ade88d-270a-4298-bed3-58a25b26c2e8
+# ╠═6d3c1926-378a-4a40-af6a-5fd1d9e0ede5
+# ╠═3a677f0e-04de-4b03-8ec7-87336cab4fd5
+# ╠═530984f6-edb5-4d37-a78f-04e1d60bde1e
+# ╠═f0b4e228-5d8f-4e26-8217-964558095e5d
+# ╠═49fe09fb-9320-47b4-8ca3-9c1055915ed6
+# ╠═69e92841-c4c1-4324-85d2-a898429772be
+# ╠═a8854ada-8f2c-42c3-9d8d-72ad878ac2ae
+# ╠═d5f2f012-a11b-4f00-a8bd-8a27ed56dc9c
+# ╠═42158658-f766-4498-bd0a-63e1dbc65ee5
+# ╠═5ecde659-822e-4ed1-ac71-af0f76c124b9
+# ╠═b31c8285-5658-4f51-947e-8211b7617532
+# ╠═cfb6c250-d180-476f-aa13-d2e89d139217
+# ╠═1ca0f940-6cad-44ac-9dce-af5ac2d4f550
+# ╠═d9360eb4-5a87-4a5f-99f3-605ae735f55e
+# ╠═4ab607b9-9b04-40a8-8860-4c86cd62a071
+# ╠═f53c0ff2-f763-460e-9d65-1031f59108cb
+# ╠═5c8cfe6e-ae0e-42f5-9299-03f8ce0be3c7
+# ╠═233a02bd-c07e-4789-bd84-a5c25e68fb45
+# ╠═6cd27947-7fe0-4209-891b-32e5d74123af
+# ╠═9d315f1d-e74d-4545-8012-f411169f72b9
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
